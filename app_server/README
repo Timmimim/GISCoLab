@@ -1,0 +1,3 @@
+views folder contains static jade templates;
+
+we will probably not use it (i.e. leave it empty or delete it).
