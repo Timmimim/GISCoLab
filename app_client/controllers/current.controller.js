@@ -4,7 +4,7 @@
         .module('giscolab')
         .controller('currentCtrl', currentCtrl);
 
-    currentCtrl.$inject = ['$location', 'meanData', 'userService'];
+    currentCtrl.$inject = ['$location', 'meanData', 'userService', '$scope'];
     function currentCtrl($location, meanData, userService, $scope) {
         console.log("current Controller is running!!!");
 
@@ -34,17 +34,15 @@
         //*****************************************************************************************************
         //*****************************************************************************************************
 
-        /* var treeview;
 
         $scope.buttonCodeToggle = function(){
             angular.element( document.querySelector('#code')).addClass('active');
             angular.element( document.querySelector('#otherdata')).removeClass('active');
-            treeview = false;
+
         };
         $scope.buttonTreeToggle = function(){
-            //angular.element( document.querySelector('#code')).removeClass('active');
-            // angular.element( document.querySelector('#otherdata')).addClass('active');
-            treeview = true;
-        }; */
+            angular.element( document.querySelector('#code')).removeClass('active');
+            angular.element( document.querySelector('#otherdata')).addClass('active');
+        };
     }
 })();
