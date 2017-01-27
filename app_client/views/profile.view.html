@@ -23,44 +23,48 @@
     </div>
 </nav>
 
-<div class="container">
-    <form method="post" ng-submit="vm.onSubmit()">
-        <div class="form-group">
-            <label  for="firstname">First name </label>
-            <input type="text" id="firstName" class="form-control" ng-model="vm.user.firstName" required />
+<div class="container" style="width: 100%">
+    <div class="jumbotron" style="height: 700px">
+        <div class="container">
+            <form method="post" ng-submit="vm.onSubmit()">
+                <div class="form-group">
+                    <label  for="firstname">First name </label>
+                    <input type="text" id="firstName" class="form-control" ng-model="vm.user.firstName" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last name</label>
+                    <input type="text" id="lastName" class="form-control" ng-model="vm.user.lastName" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="text" id="email" class="form-control" ng-model="vm.user.email" required />
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="userName" class="form-control" ng-model="vm.user.userName" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" ng-model="vm.user.password" />
+                </div>
+                <div class="form-group">
+                   <label for="password2">Password REPEAT</label>
+                   <input type="password" id="password2" class="form-control" ng-model="vm.user.password2"/>
+                 </div>
+                Optional:
+                <div class="form-group">
+                    <label for="birthday">Birthday</label>
+                    <input type="text" id="birthday" class="form-control" ng-model="vm.user.birthday"/>
+                </div>
+                <div class="form-group">
+                    <label for="info">Info-Text</label>
+                    <input type="text" id="info" class="form-control" ng-model="vm.user.info"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="vm.saveUser()">Save</button>
+                    <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="lastname">Last name</label>
-            <input type="text" id="lastName" class="form-control" ng-model="vm.user.lastName" required />
-        </div>
-        <div class="form-group">
-            <label for="email">E-Mail</label>
-            <input type="text" id="email" class="form-control" ng-model="vm.user.email" required />
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="userName" class="form-control" ng-model="vm.user.userName" required />
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" class="form-control" ng-model="vm.user.password" />
-        </div>
-        <div class="form-group">
-           <label for="password2">Password REPEAT</label>
-           <input type="password" id="password2" class="form-control" ng-model="vm.user.password2"/>
-         </div>
-        Optional:
-        <div class="form-group">
-            <label for="birthday">Birthday</label>
-            <input type="text" id="birthday" class="form-control" ng-model="vm.user.birthday"/>
-        </div>
-        <div class="form-group">
-            <label for="info">Info-Text</label>
-            <input type="text" id="info" class="form-control" ng-model="vm.user.info"/>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" ng-click="vm.saveUser()">Save</button>
-            <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button>
-        </div>
-    </form>
+    </div>
 </div>

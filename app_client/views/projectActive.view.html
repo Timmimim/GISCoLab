@@ -23,33 +23,37 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="width: 100%">
+    <div class="jumbotron" style="height: 500px">
+        <div class="container">
 
-    <div class="row">
-        <div class="col-xs-3">
-            <h1>Projekt: {{vm.project.projectName}}</h1> <!-- Links zu von der Person/von dir abonnierte/kollaborierende/erstellte Projekte -->
+            <div class="row">
+                <div class="col-xs-3">
+                    <h1>Projekt: {{vm.project.projectName}}</h1> <!-- Links zu von der Person/von dir abonnierte/kollaborierende/erstellte Projekte -->
+                </div>
+                <div class="col-xs-8">
+                    <p>Projektname: {{vm.project.projectName}}</p>
+                    <p>ID des Besitzers: <a ng-click="anFunction(vm.project.ownerID)">{{vm.project.ownerID}}</a></p>
+                    <table style="border: 1px solid black";>
+                        <tr style="border: 1px solid black";>
+                            <th>Collaborator</th>
+                        </tr>
+                        <tr style="border: 1px solid black";>
+                            <td style="border: 1px solid black";  ng-repeat="collaborator in vm.project.collaborators">{{collaborator}}</td>
+                        </tr>
+                    </table>
+                    <table style="border: 1px solid black";>
+                        <tr style="border: 1px solid black";>
+                            <td style="border: 1px solid black"; ng-repeat="collaboratorid in vm.project.collaboratorID"><a ng-click="anFunction(collaboratorid)">{{collaboratorid}}</a></td>
+                        </tr>
+                    </table>
+                    <p>Collaborator: <a ng-click="anFunction()">{{collaborator}}</a></p>
+                    <p>Erstelldatum: {{vm.project.dateCreated}}</p>
+                    <p>Info: {{vm.project.info}}</p>
+                    <p>Änderungsdatum: {{vm.project.dateEdited}}</p>
+                </div>
+                <a href="/projectUpdate" class="btn btn-link">Projektinfos bearbeiten</a>
+            </div>
         </div>
-        <div class="col-xs-8">
-            <p>Projektname: {{vm.project.projectName}}</p>
-            <p>ID des Besitzers: <a ng-click="anFunction(vm.project.ownerID)">{{vm.project.ownerID}}</a></p>
-            <table style="border: 1px solid black";>
-                <tr style="border: 1px solid black";>
-                    <th>Collaborator</th>
-                </tr>
-                <tr style="border: 1px solid black";>
-                    <td style="border: 1px solid black";  ng-repeat="collaborator in vm.project.collaborators">{{collaborator}}</td>
-                </tr>
-            </table>
-            <table style="border: 1px solid black";>
-                <tr style="border: 1px solid black";>
-                    <td style="border: 1px solid black"; ng-repeat="collaboratorid in vm.project.collaboratorID"><a ng-click="anFunction(collaboratorid)">{{collaboratorid}}</a></td>
-                </tr>
-            </table>
-            <p>Collaborator: <a ng-click="anFunction()">{{collaborator}}</a></p>
-            <p>Erstelldatum: {{vm.project.dateCreated}}</p>
-            <p>Info: {{vm.project.info}}</p>
-            <p>Änderungsdatum: {{vm.project.dateEdited}}</p>
-        </div>
-        <a href="/projectUpdate" class="btn btn-link">Projektinfos bearbeiten</a>
     </div>
 </div>

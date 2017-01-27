@@ -22,27 +22,30 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="container">
-    <form method="post" ng-submit="vm.onSubmit()">
-        <div class="form-group">
-            <label  for="projectName">Projectname </label>
-            <input type="text" id="projectName" class="form-control" ng-model="vm.project.projectName" required />
-        </div>
-        <div class="form-group">
-            <label for="userName">Username</label>
-            <input type="text" id="userName" class="form-control" ng-model="vm.project.userName" required />
-        </div>
-        <div class="form-group">
-            <label for="collaborators">Collaborators</label>
-            <input type="text" id="collaborators" class="form-control" ng-model="vm.project.collaborators"/>
-        </div>
-        <div class="form-group">
-            <label for="info">Info-Text</label>
-            <input type="text" id="info" class="form-control" ng-model="vm.project.info" required/>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" ng-click="vm.saveProject()">Save</button>
-            <button class="btn btn-danger" ng-click="vm.deleteProject()">Delete</button>
-        </div>
-    </form>
-</div>
+
+<div class="container" style="width: 100%">
+    <div class="jumbotron" style="height: 500px">
+        <div class="container">
+                    <form method="post" ng-submit="vm.onSubmit()">
+                        <div class="form-group">
+                            <label  for="projectName">Projectname </label>
+                            <input type="text" id="projectName" class="form-control" ng-model="vm.project.projectName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">Username</label>
+                            <input type="text" id="userName" class="form-control" ng-model="vm.project.userName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="collaborators">Collaborators</label>
+                            <input type="text" id="collaborators" class="form-control" ng-model="vm.project.collaborators"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="info">Info-Text</label>
+                            <input type="text" id="info" class="form-control" ng-model="vm.project.info" required/>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" ng-click="vm.saveProject()">Save</button>
+                            <button class="btn btn-danger" ng-click="vm.deleteProject()">Delete</button>
+                        </div>
+                    </form>
+                </div>

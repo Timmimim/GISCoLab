@@ -55,10 +55,10 @@ var projectSchema = new mongoose.Schema({
         required: false
     }],
 
-    filePath: {
+    filePath: [{
        type: String,
        required: false
-    }
+    }]
 });
 
 mongoose.model( 'Project', projectSchema );
