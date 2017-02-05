@@ -27,51 +27,67 @@
 <div class="container" style="width: 100%">
     <div class="jumbotron" style="height: 100%">
         <div class="container">
-
-            <div class="row">
-                <div class="col-xs-3">
-                    <img src="../styles/images/Download.jpg"> <!-- Profilbild -->
-                    <p></p>
-                    <p>Projekts:</p> <!-- Links zu von der Person/von dir abonnierte/kollaborierende/erstellte Projekte -->
-                    <table style="border: 1px solid black";>
-                        <tr style="border: 1px solid black";>
-                            <th>Own Projects</th>
-                            <th>Own Projects ID</th>
-                        </tr>
-                        <tr style="border: 1px solid black"; ng-repeat="ownProject in vm.user.ownProjects">
-                            <td style="border: 1px solid black";>{{ownProject.projectName}}</td>
-                                <td style="border: 1px solid black";><a ng-click="myFunction(ownProject.projectID)">{{ownProject.projectID}}</a></td>
-                        </tr>
-                    </table>
-                    <br>
-                    <table style="border: 1px solid black";>
-                        <tr style="border: 1px solid black";>
-                            <th>Collaborative Projects</th>
-                            <th>Collaborative Projects ID</th>
-                        </tr>
-                        <tr style="border: 1px solid black"; ng-repeat="coopProject in vm.user.coopProjects">
-                            <td style="border: 1px solid black";>{{coopProject.projectName}}</td>
-                            <td style="border: 1px solid black";><a ng-click="myFunction(coopProject.projectID)">{{coopProject.projectID}}</a></td>
-                        </tr>
-                    </table>
-            <p></p>
-            <p>Workmates</p> <!-- Links zu deinen "Kollegen"/Freunden -->
-            <p>Subscribed Persons</p> <!-- Von dir abonnierte Personen -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>{{vm.user.userName}}</h3>
+                </div>
             </div>
-            <div class="col-xs-8"> <!-- Persönliche Daten  -->
-            <p>First Name: {{vm.user.firstName}}</p>
-            <p>Last Name: {{vm.user.lastName}}</p>
-            <p>E-mail: {{vm.user.email}}</p>
-            <p>Username: {{vm.user.userName}}</p>
-            <p>Birthday: {{vm.user.birthday}}</p>
-            <p>Info: {{vm.user.info}}</p>
-            <p>Register Date: {{vm.user.registrDate}}</p>
-        </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../styles/images/Download.jpg" class="img-circle img-responsive"> </div>
 
-        <div class="col-xs-1"> <!-- Einstellungen/Bei Fremdprofilen: Abonnieren-Button -->
-            <a href="/profile"><img src="../styles/images/gear-wheel-304395_960_720.png" style="width: 50%; align: right"></a>
-        </div>
-        </div>
-        </div>
-    </div>
-</div>
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{{vm.user.firstName}}</td>
+                            </tr>
+                            <tr>
+                                <td>Surname:</td>
+                                <td>{{vm.user.lastName}}</td>
+                            </tr>
+                            <tr>
+                                <td>E-Mail:</td>
+                                <td>{{vm.user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Birthday:</td>
+                                <td>{{vm.user.birthday}}</td>
+                            </tr>
+                            <tr>
+                                <td>Personal Information:</td>
+                                <td>{{vm.user.info}}</td>
+                            </tr>
+                            <tr>
+                                <td>Member since:</td>
+                                <td>{{vm.user.registrDate}}></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-xs-2">
+                            <div class="btn-group">
+                                <!-- Links zu von der Person/von dir abonnierte/kollaborierende/erstellte Projekte -->
+                                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Own Projects<span class="caret"></span></button>
+                                <table class="dropdown-costum dropdown-menu">
+                                    <tr ng-repeat="ownProject in vm.user.ownProjects">
+                                        <td><a ng-click="myFunction(ownProject.projectID)">{{ownProject.projectName}}</a></td>
+                                    </tr>
+                                </table>
+                                <div class="col-xs-2">
+                                    <div class="btn-group">
+                                        <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Collaborative Projects<span class="caret"></span></button>
+                                        <table class="dropdown-costum dropdown-menu">
+                                            <tr ng-repeat="coopProject in vm.user.coopProjects">
+                                                <td><a ng-click="myFunction(coopProject.projectID)">{{coopProject.projectName}}</a></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1"> <!-- Einstellungen/Bei Fremdprofilen: Abonnieren-Button -->
+                        <a href="/profile"><img src="../styles/images/gear-wheel-304395_960_720.png" style="width: 50%; align: right"></a>
+                    </div>
+                </div>

@@ -43,24 +43,14 @@
                     </table>
                 </div>
             </div>
-            <div class="col-xs-2"> <!-- Dropdown zu kollaborierende Projekte -->
+            <div class="col-xs-2">
                 <div class="btn-group">
-                    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">collaborative<span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Project</a></li>
-                        <li><a href="#">Another Project</a></li>
-                        <li><a href="#">Another Project</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xs-2"> <!-- Dropdown zu von dir abonnierte Projekte -->
-                <div class="btn-group">
-                    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">subscribed<span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Project</a></li>
-                        <li><a href="#">Another Project</a></li>
-                        <li><a href="#">Another Project</a></li>
-                    </ul>
+                    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Collaborative Projects<span class="caret"></span></button>
+                    <table class="dropdown-costum dropdown-menu">
+                        <tr ng-repeat="coopProject in vm.user.coopProjects">
+                            <td><a ng-click="myFunction(coopProject.projectID)">{{coopProject.projectName}}</a></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
