@@ -99,8 +99,8 @@ module.exports.createProject = function(req, res){
     setTimeout(function () {
         exec("cd projectData/"+projDirName+" && mkdir rScripts", puts);
         exec("cd projectData/"+projDirName+" && mkdir txtFiles", puts);
-        exec("cd projectData/"+projDirName+" && mkdir geoTiffs", puts);
-        project.filePath.push("projectData", "projectData/"+req.body.uniqueKey, "projectData/"+req.body.uniqueKey+"/rScripts", "projectData/"+req.body.uniqueKey+"/txtFiles", "projectData/"+req.body.uniqueKey+"/geoTiffs");
+        exec("cd projectData/"+projDirName+" && mkdir Layers", puts);
+        project.filePath.push("projectData", "projectData/"+req.body.uniqueKey, "projectData/"+req.body.uniqueKey+"/rScripts", "projectData/"+req.body.uniqueKey+"/txtFiles", "projectData/"+req.body.uniqueKey+"/Layers");
 
     }, 40);
 };
