@@ -13,7 +13,7 @@ bower install
 
 then run in mongo console:
 
-mongod --dbpath <data folder>
+mongod --dbpath data-folder
 
 run in the other console:
 
