@@ -26,13 +26,13 @@
 
 <div ng-show="searchProjects" class="container">
     <div class="jumbotron">
-        <p class="bg-default"> Own Projects:</p>
+        <p class="bg-default"> Results for "{{searchProjects}}" in own projects:</p>
         <table class="table">
             <tr ng-repeat="ownProject in vm.user.ownProjects | filter:searchProjects">
                 <td ng-click="myFunction(ownProject.projectID)"><a href="#">{{ownProject.projectName}}</a></td>
             </tr>
         </table>
-        <p class="bg-default"> Collaborative Projects:</p>
+        <p class="bg-default"> Results for "{{searchProjects}}" in collaborative projects:</p>
         <table class="table">
             <tr ng-repeat="coopProject in vm.user.coopProjects | filter:searchProjects">
                 <td ng-click="myFunction(coopProject.projectID)"><a href="#">{{coopProject.projectName}}</a></td>
@@ -79,7 +79,7 @@
                     <input type="text" id="info" class="form-control" ng-model="vm.user.info"/>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary" ng-click="vm.saveUser()">Save</button>
+                    <button class="btn btn-custom" ng-click="vm.saveUser()">Save</button>
                     <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button>
                 </div>
             </form>

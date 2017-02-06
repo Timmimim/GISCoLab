@@ -73,9 +73,10 @@
                         </tr>
                     </table>
 
-                    <input class="btn btn-primary" type="button" value="Add Row" onclick="addRow('dataTable')" />
-                    <button class="btn btn-primary" id="saveCode">Save</button>
-                    <button class="btn btn-primary" id="runCode" onclick="runR()">Run R-Code</button>
+                    <input class="btn btn-custom" type="button" value="Add Row" onclick="addRow('dataTable')" />
+                    <button class="btn btn-custom" id="saveCode">Save</button>
+                    <button class="btn btn-custom" id="runCode" onclick="runR()">Run R-Code</button>
+                    <br>
                 </div>
 
 
@@ -85,7 +86,7 @@
                 <div ng-show="txtbox" style="height: 85%; width: 100%">
                     <textarea id="noteFName" style="height: 10%; width: 100%; resize: none" placeholder="File Name (w/o type ending)"></textarea>
                     <textarea id="txtview" style="height: 80%; width: 100%; resize: none" placeholder="Your notes here"></textarea>
-                    <button class="btn btn-primary" id="saveTXT">Save this Note</button>
+                    <button class="btn btn-custom" id="saveTXT">Save this Note</button>
                 </div>
 
                 <div ng-show="optionsview" style="width: 100%; height:85%;">
@@ -93,11 +94,11 @@
                         <p> Add a File (.txt or .r) to your Project</p>
                         <input name="textDatei" id="file-input" name="file-upload" type="file">
                         <br>
-                        <button type="button" class="btn btn-primary" id="uploadButton">Upload</button>
+                        <button type="button" class="btn btn-custom" id="uploadButton">Upload</button>
                         <br>
                         <br>
                         <p> Download The Whole Project</p>
-                        <button type="button" class="btn btn-primary" ng-click="download(vm.project.uniqueKey)">Download</button>
+                        <button type="button" class="btn btn-custom" ng-click="download(vm.project.uniqueKey)">Download</button>
                     </form>
                 </div>
 
@@ -115,7 +116,7 @@
                         </div><!--/.nav-collapse -->
                     </div>
                 </nav>
-                <leaflet ng-hide="mapshow" lf-draw="vm.drawOptions" lf-center="vm.center" marker="vm.markers" layers="vm.layers" height="80%" width="100%"></leaflet>
+                <leaflet ng-hide="mapshow" lf-draw="vm.drawOptions" lf-center="vm.center" marker="vm.markers" layers="vm.layers" height="90%" width="100%"></leaflet>
                 <div ng-show="mapshow" id="resultmap">
 
                 </div>

@@ -249,8 +249,8 @@
 
         }
         $scope.buttonshowthemapToggle = function(){
-            angular.element( document.querySelector('#code')).addClass('active');
-            angular.element( document.querySelector('#otherdata')).removeClass('active');
+            angular.element( document.querySelector('#showthemap')).addClass('active');
+            angular.element( document.querySelector('#showtheresult')).removeClass('active');
 
         }
         $scope.buttonshowtheresultToggle = function(){

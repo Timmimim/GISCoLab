@@ -6,6 +6,31 @@ a {
   color: #000000;
 }
 
+.btn-custom {
+  color: #fff;
+  background-color: #00727d;
+  border-color: #004f56;
+}
+.btn-custom:focus,
+.btn-custom.focus {
+  color: #fff;
+  background-color: #00727d;
+  border-color: #00373c;
+}
+.btn-custom:hover {
+  color: #fff;
+  background-color: #00636e;
+  border-color: #00373c;
+}
+.btn-custom:active,
+.btn-custom.active,
+.open > .dropdown-toggle.btn-custom {
+  color: #fff;
+  background-color: #004f56;
+  border-color: #00373c;
+}
+
+
 .user-row {
   margin-bottom: 14px;
 }
