@@ -1,5 +1,4 @@
 
-
 <nav class="navbar navbar-current navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -20,7 +19,6 @@
 
                     <a id="logout" onclick="logout()" class="btn btn-default" href="/home">Logout</a>
                 </form>
-
             </div>
         </div><!--/.nav-collapse -->
     </div>
@@ -42,13 +40,15 @@
                     <div class="container">
                         <div id="navbarshort" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li class="active" ng-click="codeview = false; treeview = false; txtbox = false; buttonCodeToggle();" id="code"><a href="#">Code</a></li>
-                                <li ng-click="treeview = true; codeview = true; txtbox = false; buttonTreeToggle();" id="otherdata"><a href="#">Other data</a></li>
-                                <li ng-click="treeview = false; codeview = true; txtbox = true; buttonTxtToggle();" id="txt"><a href="#">Notes</a></li>
+                                <li class="active" ng-click="codeview = false; treeview = false; txtbox = false; optionsview = false; buttonCodeToggle();" id="code"><a href="#">Code</a></li>
+                                <li ng-click="treeview = true; codeview = true; txtbox = false; optionsview = false; buttonTreeToggle();" id="otherdata"><a href="#">Files</a></li>
+                                <li ng-click="treeview = false; codeview = true; txtbox = true; optionsview = false; buttonTxtToggle();" id="txt"><a href="#">Notes</a></li>
+                                <li ng-click="treeview= false; codeview = true; txtbox = false; optionsview = true; buttonOptionsToggle();" id="options"><a href="#">Options</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                     </div>
                 </nav>
+
                 <div ng-hide="codeview" style="height: 85%; width: 100%; overflow: auto;">
                     <textarea id="fileName" style="height: 7%; width: 100%; resize: none" placeholder="File Name (w/o type ending) "></textarea>
                     <textarea id="packages" style="height: 10%; width: 100%; resize: none" placeholder="Install packages here"></textarea>
@@ -62,11 +62,11 @@
                     </p>
                     <table id="dataTable" class="table table-bordered" width="100%" border="1">
                         <thead>
-                        <th style="height: 12px; width: 30%">Output of your code</th>
-                        <th style="height: 12px; width: 10%">Spectr. Band</th>
-                        <th style="height: 12px; width: 30%">New layer name</th>
-                        <th style="height: 12px; width: 10%">Min</th>
-                        <th style="height: 12px; width: 10%">Max</th>
+                            <th style="height: 12px; width: 30%">Output of your code</th>
+                            <th style="height: 12px; width: 10%">Spectr. Band</th>
+                            <th style="height: 12px; width: 30%">New layer name</th>
+                            <th style="height: 12px; width: 10%">Min</th>
+                            <th style="height: 12px; width: 10%">Max</th>
                         </thead>
                         <tr>
                             <td><input type="text" name="outputName" placeholder="As specified in your code"/></td>
@@ -76,10 +76,13 @@
                             <td><input type="text" name="max"  placeholder="Max"></td>
                         </tr>
                     </table>
+
                     <input class="btn btn-default" type="button" value="Add Row" onclick="addRow('dataTable')" />
                     <button class="btn btn-default" id="saveCode">Save</button>
                     <button class="btn btn-default" id="runCode" onclick="runR()">Run R-Code</button>
                 </div>
+
+
                 <div ng-show="treeview" id="treebox" style="width: 100%; height:85%;"></div>
 
 
@@ -88,15 +91,19 @@
                     <textarea id="txtview" style="height: 80%; width: 100%; resize: none" placeholder="Your notes here"></textarea>
                     <button class="btn btn-default" id="saveTXT">Save this Note</button>
                 </div>
+
+                <div ng-show="optionsview" style="width: 100%; height:85%;">
+                    <form id="file-upload-form">
+                        <p> Add a File (.txt or .r) to your Project</p>
+                        <input name="textDatei" id="file-input" name="file-upload" type="file">
+                        <button type="button" class="btn btn-default" id="uploadButton">Upload</button>
+                        <p> Download The Whole Project</p>
+                        <button type="button" class="btn btn-default" ng-click="download(vm.project.uniqueKey)">Download</button>
+                    </form>
+                </div>
+
                 <textarea id="uniqueKey" ng-hide="true">{{vm.project.uniqueKey}}</textarea>
 
-                <form id="file-upload-form">
-                    <p>Eine Datei(.txt oder .r) zum Projekt hinzufügen</p>
-                    <input name="textDatei" id="file-input" name="file-upload" type="file">
-                    <button class="btn btn-default" id="uploadButton">Upload</button>
-                </form>
-                <p>Download The Whole Project</p>
-                <button class="btn btn-default" ng-click="download(vm.project.uniqueKey)">Download</button>
             </div>
             <div id="mirror" style="height: 100%" class="col-md-8">
                 <leaflet lf-draw="vm.drawOptions" lf-center="vm.center" marker="vm.markers" layers="vm.layers" height="100%" width="100%"></leaflet>
@@ -117,6 +124,3 @@
 <script src="../upload.js"></script>
 <script src="../runR.js"></script>
 <script src="../saveR.js"></script>
-
-
-

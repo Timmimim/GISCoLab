@@ -62,6 +62,9 @@
                         url: 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                         type: 'xyz'
                     }
+                },
+                overlays:{
+
                 }
             },
 
@@ -206,11 +209,25 @@
                             }};
                             console.log(vm.layers);
                         }
+                            if(ending == '.txt'){
+                                $('#txtview').html(data);
+                                console.log(data);
+                                itemname = itemname.replace(".txt", "");
+                                $('#noteFName').html(itemname);
+                            }
+                            else
+                                if(ending == '.png'){
+                                // vm.layers.overlays.push({name : {name : itemname , data : data , type: "image/png"}})
+                                vm.layers.overlays[itemname] =  {name: itemname, type:'xyz', url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + itemname, layerParams: {
+                                    format: 'image/png',
+                                    transparent: true
+                                }};
+                                console.log(vm.layers);
+                            }
                     }
                 })
             }
         };
-
         function appendElement(xMin, xMax, yMin, yMax) {
             angular.element('#codearea').append(
                 '<textarea id="xMin" ng-hide="true">'+xMin+'</textarea>' +
