@@ -63,6 +63,9 @@
                         url: 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                         type: 'xyz'
                     }
+                },
+                overlays:{
+
                 }
             },
 
@@ -155,7 +158,7 @@
             var id = tree.getSelectedId();
             var item = tree.getItem(id);
             var path = item.path;
-            var name = item.name;
+            var itemname = item.name;
             var ending = item.extension;
             if(ending == ".txt"){
                 var txtstring = "/txtFiles/";
@@ -164,6 +167,11 @@
                 if(ending == '.r'){
                 var txtstring = "/rScripts/";
             }
+            else
+                if(ending == '.png'){
+                var txtstring = "/Layers/";
+            }
+
             console.log(txtstring);
             console.log(id);
             console.log(item);
@@ -172,7 +180,7 @@
             if(ending !== undefined){
                 $.ajax({
                     type: "GET",
-                    url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + name,
+                    url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + itemname,
                     success: function (data) {
                         if(ending == '.r'){
                             $('#codearea').html(data);
@@ -182,10 +190,23 @@
                                 $('#txtview').html(data);
                                 console.log(data);
                             }
+                            else
+                                if(ending == '.png'){
+                                // vm.layers.overlays.push({name : {name : itemname , data : data , type: "image/png"}})
+                                vm.layers.overlays[itemname] =  {name: itemname, type:'xyz', url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + itemname, layerParams: {
+                                    format: 'image/png',
+                                    transparent: true
+                                }};
+                                console.log(vm.layers);
+                            }
                     }
                 })
             }
         };
+
+        /*
+         xyz,geoJSON,geoJSONShape,geoJSONAwesomeMarker,geoJSONVectorMarker,cartodbTiles,cartodbUTFGrid,cartodbInteractive,wms,wmts,group,featureGroup,markercluster,imageOverlay,iip,custom,cartodb,ags,agsBase,agsClustered,agsDynamic,agsFeature,agsHeatmap,agsImage,agsTiled,bing,china,google,heat,here,mapbox,mapboxGL,utfGrid,webGLHeatmap,wfs,yandex
+        */
 
         $scope.buttonCodeToggle = function(){
             angular.element( document.querySelector('#code')).addClass('active');
