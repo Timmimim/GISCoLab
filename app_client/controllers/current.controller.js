@@ -8,7 +8,6 @@
         console.log("current Controller is running!!!");
 
        var vm = this;
-
         vm.project = {};
 
         var pid = projectService.getID();
@@ -92,18 +91,25 @@
         });
 
         var handle = {
-            created: function(e,leafletEvent, leafletObject, model, modelName) {
+            created: function (e, leafletEvent, leafletObject, model, modelName) {
 
                 var layerJSON = leafletEvent.layer.toGeoJSON();
-                console.log(layerJSON);
+                //console.log(layerJSON);
+                var xMin = layerJSON.geometry.coordinates["0"]["0"]["0"].toString(),
+                    xMax = layerJSON.geometry.coordinates["0"]["2"]["0"].toString(),
+                    yMin = layerJSON.geometry.coordinates["0"]["0"]["1"].toString(),
+                    yMax = layerJSON.geometry.coordinates["0"]["2"]["1"].toString();
+
+                appendElement(xMin, xMax, yMin, yMax);
 
                 drawnItems.addLayer(leafletEvent.layer.bindPopup(
-                    "top left corner: " + layerJSON.geometry.coordinates["0"]["0"].toString() +"\n" +
-                    "top right corner: " + layerJSON.geometry.coordinates["0"]["1"].toString() +"\n" +
-                    "bottom left corner: " + layerJSON.geometry.coordinates["0"]["2"].toString() +"\n" +
-                    "bottom right corner: " + layerJSON.geometry.coordinates["0"]["3"].toString()
+                        "<b>Values for bbox1 variable: </b> <br>" +
+                        "xMin: " + layerJSON.geometry.coordinates["0"]["0"]["0"].toString() + "<br>" +
+                        "xMax: " + layerJSON.geometry.coordinates["0"]["2"]["0"].toString() + "<br>" +
+                        "yMin: " + layerJSON.geometry.coordinates["0"]["0"]["1"].toString() + "<br>" +
+                        "yMax: " + layerJSON.geometry.coordinates["0"]["2"]["1"].toString()
                     )
-                );
+                )
             },
             edited: function(arg) {},
             deleted: function(arg) {
@@ -155,7 +161,7 @@
             var id = tree.getSelectedId();
             var item = tree.getItem(id);
             var path = item.path;
-            var name = item.name;
+            var itemname = item.name;
             var ending = item.extension;
             if(ending == ".txt"){
                 var txtstring = "/txtFiles/";
@@ -164,6 +170,11 @@
                 if(ending == '.r'){
                 var txtstring = "/rScripts/";
             }
+            else
+            if(ending == '.png'){
+                var txtstring = "/Layers/";
+            }
+
             console.log(txtstring);
             console.log(id);
             console.log(item);
@@ -172,35 +183,71 @@
             if(ending !== undefined){
                 $.ajax({
                     type: "GET",
-                    url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + name,
+                    url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + itemname,
                     success: function (data) {
                         if(ending == '.r'){
                             $('#codearea').html(data);
                             console.log(data);
+                            itemname = itemname.replace(".R", "");
+                            $('#fileName').html(itemname);
                         }else
-                            if(ending == '.txt'){
-                                $('#txtview').html(data);
-                                console.log(data);
-                            }
+                        if(ending == '.txt'){
+                            $('#txtview').html(data);
+                            console.log(data);
+                            itemname = itemname.replace(".txt", "");
+                            $('#noteFName').html(itemname);
+                        }
+                        else
+                        if(ending == '.png'){
+                            // vm.layers.overlays.push({name : {name : itemname , data : data , type: "image/png"}})
+                            vm.layers.overlays[itemname] =  {name: itemname, type:'xyz', url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + itemname, layerParams: {
+                                format: 'image/png',
+                                transparent: true
+                            }};
+                            console.log(vm.layers);
+                        }
                     }
                 })
             }
         };
 
+        function appendElement(xMin, xMax, yMin, yMax) {
+            angular.element('#codearea').append(
+                '<textarea id="xMin" ng-hide="true">'+xMin+'</textarea>' +
+                '<textarea id="xMax" ng-hide="true">'+xMax+'</textarea>' +
+                '<textarea id="yMin" ng-hide="true">'+yMin+'</textarea>' +
+                '<textarea id="yMax" ng-hide="true">'+yMax+'</textarea>'
+            );
+        }
+
+        /*
+         xyz,geoJSON,geoJSONShape,geoJSONAwesomeMarker,geoJSONVectorMarker,cartodbTiles,cartodbUTFGrid,cartodbInteractive,wms,wmts,group,featureGroup,markercluster,imageOverlay,iip,custom,cartodb,ags,agsBase,agsClustered,agsDynamic,agsFeature,agsHeatmap,agsImage,agsTiled,bing,china,google,heat,here,mapbox,mapboxGL,utfGrid,webGLHeatmap,wfs,yandex
+         */
+
         $scope.buttonCodeToggle = function(){
             angular.element( document.querySelector('#code')).addClass('active');
             angular.element( document.querySelector('#otherdata')).removeClass('active');
             angular.element( document.querySelector('#txt')).removeClass('active');
+            angular.element( document.querySelector('#options')).removeClass('active');
         };
         $scope.buttonTreeToggle = function(){
             angular.element( document.querySelector('#code')).removeClass('active');
             angular.element( document.querySelector('#otherdata')).addClass('active');
             angular.element( document.querySelector('#txt')).removeClass('active');
+            angular.element( document.querySelector('#options')).removeClass('active');
         };
         $scope.buttonTxtToggle = function(){
             angular.element( document.querySelector('#code')).removeClass('active');
             angular.element( document.querySelector('#otherdata')).removeClass('active');
             angular.element( document.querySelector('#txt')).addClass('active');
+            angular.element( document.querySelector('#options')).removeClass('active');
+        }
+        $scope.buttonOptionsToggle = function(){
+            angular.element( document.querySelector('#code')).removeClass('active');
+            angular.element( document.querySelector('#otherdata')).removeClass('active');
+            angular.element( document.querySelector('#txt')).removeClass('active');
+            angular.element( document.querySelector('#options')).addClass('active');
+
         }
 
     }

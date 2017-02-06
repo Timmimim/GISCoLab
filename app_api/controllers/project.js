@@ -23,6 +23,7 @@ module.exports.createProject = function(req, res){
             project.projectName = req.body.projectName;
             project.uniqueKey = req.body.uniqueKey;
             project.ownerID = obj._id;
+			project.ownerName = req.body.userName;
             project.info = req.body.info;
             project.dateCreated = Date.now();
 
@@ -112,7 +113,7 @@ module.exports.projectRead = function(req, res) {
             if(err){
                 res.status(401).json("could not load the project");
             } else {
-                res.status(200).json(obj);
+				res.status(200).json(obj);
             }
         });
 };

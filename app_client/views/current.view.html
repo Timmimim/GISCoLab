@@ -1,7 +1,4 @@
-<!-- <head>
-    <link rel="stylesheet" href="backgroundcurrent.css"/>
-</head>
--->
+
 
 <nav class="navbar navbar-current navbar-static-top">
     <div class="container">
@@ -55,12 +52,14 @@
                 <div ng-hide="codeview" style="height: 85%; width: 100%; overflow: auto;">
                     <textarea id="fileName" style="height: 7%; width: 100%; resize: none" placeholder="File Name (w/o type ending) "></textarea>
                     <textarea id="packages" style="height: 10%; width: 100%; resize: none" placeholder="Install packages here"></textarea>
+                    <p style="font-size: 12px;">To find out what datasets are available within this SciDB instance, <br>
+                                                please referr to the table at the bottom of this page.</p>
                     <textarea id="codearea" style="height: 68%; width: 100%; resize: none" placeholder="Your R Code here"></textarea>
 
-                    <input type="button" value="Add Row" onclick="addRow('dataTable')" />
                     <p style="font-size: 12px;">Data from this table is only required to RUN code, it will not be saved! <br>
                         Checkbox is only used for row deletion. All rows will be passed to Code Runner. <br>
-                        If only one value of a row is missing, the row will be ignored!</p>
+                        If only one value of a row is missing, the row will be ignored! <br>
+                    </p>
                     <table id="dataTable" class="table table-bordered" width="100%" border="1">
                         <thead>
                         <th style="height: 12px; width: 30%">Output of your code</th>
@@ -77,25 +76,27 @@
                             <td><input type="text" name="max"  placeholder="Max"></td>
                         </tr>
                     </table>
-
-                    <button id="saveCode">Save</button>
-                    <button id="runCode">Run R-Code</button>
-                    <button id="lameTest">Test</button>
+                    <input class="btn btn-default" type="button" value="Add Row" onclick="addRow('dataTable')" />
+                    <button class="btn btn-default" id="saveCode">Save</button>
+                    <button class="btn btn-default" id="runCode" onclick="runR()">Run R-Code</button>
                 </div>
                 <div ng-show="treeview" id="treebox" style="width: 100%; height:85%;"></div>
+
+
                 <div ng-show="txtbox" style="height: 85%; width: 100%">
                     <textarea id="noteFName" style="height: 10%; width: 100%; resize: none" placeholder="File Name (w/o type ending)"></textarea>
                     <textarea id="txtview" style="height: 80%; width: 100%; resize: none" placeholder="Your notes here"></textarea>
-                    <button id="saveTXT">Save this Note</button>
+                    <button class="btn btn-default" id="saveTXT">Save this Note</button>
                 </div>
                 <textarea id="uniqueKey" ng-hide="true">{{vm.project.uniqueKey}}</textarea>
+
                 <form id="file-upload-form">
                     <p>Eine Datei(.txt oder .r) zum Projekt hinzufügen</p>
                     <input name="textDatei" id="file-input" name="file-upload" type="file">
-                    <button id="uploadButton">Upload</button>
+                    <button class="btn btn-default" id="uploadButton">Upload</button>
                 </form>
                 <p>Download The Whole Project</p>
-                <button ng-click="download(vm.project.uniqueKey)">Download</button>
+                <button class="btn btn-default" ng-click="download(vm.project.uniqueKey)">Download</button>
             </div>
             <div id="mirror" style="height: 100%" class="col-md-8">
                 <leaflet lf-draw="vm.drawOptions" lf-center="vm.center" marker="vm.markers" layers="vm.layers" height="100%" width="100%"></leaflet>
@@ -110,7 +111,8 @@
                 function (event, ui) {
                     $('#mirror').css('width', $('.container-fluid').width() - $( "#resize" ).width() );
                 });
-    }); </script>
+    });
+</script>
 
 <script src="../upload.js"></script>
 <script src="../runR.js"></script>

@@ -1,9 +1,11 @@
 /**
  * Created by timmimim on 04.02.17.
  */
+/*
 $('#runCode').on('click', function () {
 	runR();
 });
+*/
 
 function addRow() {
 	$('#dataTable').append(
@@ -19,13 +21,30 @@ function addRow() {
 
 function runR ()
 {
+
+	if (document.getElementById('xMin') === null) {
+		var conf = confirm("You have not drawn any polygon yet! \n" +
+			"Without one, bbox will not be generated automatically.\n" +
+			"Have you set one by hand? \n" +
+			"If yes, press OK.   If no, press Cancel.");
+		if(!conf) {return}
+	}
+
 	var uniqueKey = document.getElementById('uniqueKey').value;
 
 	var fName = document.getElementById('fileName').value;
 	var pkg = document.getElementById('packages').value;
 	var code = document.getElementById('codearea').value;
 
-	var output = [];
+
+
+	var output = {
+		xMin : document.getElementById('xMin').value,
+		xMax : document.getElementById('xMax').value,
+		yMin : document.getElementById('yMin').value,
+		yMax : document.getElementById('yMax').value
+	};
+	console.log(output);
 
 	var data = {
 		fName: fName,
@@ -33,7 +52,7 @@ function runR ()
 		code: code
 	};
 	console.log(data);
-
+	alert("This may take a while, depending on your code and bbox.");
 	$.ajax({
 		type: "POST",
 		data: data,

@@ -38,18 +38,12 @@
                         <table class="table table-projects">
                             <tbody>
                             <tr>
-                                <td>Project ID:</td>
-                                <td>{{vm.project.projectID}}</td>
-                            </tr>
-                            <tr>
                                 <td>Creator</td>
-                                <td>{{vm.project.ownerName}}</td>
-                                <td>{{vm.project.ownerID}}</td>
+                                <td><a ng-click="anFunction(vm.project.ownerID)">{{vm.project.ownerName}}</a></td>
                             </tr>
                             <tr>
                                 <td>Collaborator:</td>
-                                <td>{{vm.project.collaborators}}</td>
-                                <td>{{vm.project.collaboratorID}}</td>
+                                <td ng-repeat="col in vm.project.collaboratorID"><a ng-click="anFunction(col)">{{vm.project.collaborators[$index]}}</a></td>
                             </tr>
                             <tr>
                                 <td>Created:</td>
