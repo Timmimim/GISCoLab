@@ -191,16 +191,26 @@
             angular.element( document.querySelector('#code')).addClass('active');
             angular.element( document.querySelector('#otherdata')).removeClass('active');
             angular.element( document.querySelector('#txt')).removeClass('active');
+            angular.element( document.querySelector('#options')).removeClass('active');
         };
         $scope.buttonTreeToggle = function(){
             angular.element( document.querySelector('#code')).removeClass('active');
             angular.element( document.querySelector('#otherdata')).addClass('active');
             angular.element( document.querySelector('#txt')).removeClass('active');
+            angular.element( document.querySelector('#options')).removeClass('active');
         };
         $scope.buttonTxtToggle = function(){
             angular.element( document.querySelector('#code')).removeClass('active');
             angular.element( document.querySelector('#otherdata')).removeClass('active');
             angular.element( document.querySelector('#txt')).addClass('active');
+            angular.element( document.querySelector('#options')).removeClass('active');
+        }
+        $scope.buttonOptionsToggle = function(){
+            angular.element( document.querySelector('#code')).removeClass('active');
+            angular.element( document.querySelector('#otherdata')).removeClass('active');
+            angular.element( document.querySelector('#txt')).removeClass('active');
+            angular.element( document.querySelector('#options')).addClass('active');
+
         }
 
     }
