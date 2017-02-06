@@ -248,6 +248,16 @@
             angular.element( document.querySelector('#options')).addClass('active');
 
         }
+        $scope.buttonshowthemapToggle = function(){
+            angular.element( document.querySelector('#code')).addClass('active');
+            angular.element( document.querySelector('#otherdata')).removeClass('active');
+
+        }
+        $scope.buttonshowtheresultToggle = function(){
+            angular.element( document.querySelector('#showthemap')).removeClass('active');
+            angular.element( document.querySelector('#showtheresult')).addClass('active');
+
+        }
 
     }
 })();

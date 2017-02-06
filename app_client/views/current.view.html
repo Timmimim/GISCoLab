@@ -17,7 +17,7 @@
                         <input id="search" type="search" class="form-control" name="search" value="" placeholder="Search">
                     </div>
 
-                    <a id="logout" onclick="logout()" class="btn btn-default" href="/home">Logout</a>
+                    <a id="logout" onclick="logout()" class="btn btn-danger" href="/home">Logout</a>
                 </form>
             </div>
         </div><!--/.nav-collapse -->
@@ -79,9 +79,9 @@
                         </tr>
                     </table>
 
-                    <input class="btn btn-default" type="button" value="Add Row" onclick="addRow('dataTable')" />
-                    <button class="btn btn-default" id="saveCode">Save</button>
-                    <button class="btn btn-default" id="runCode" onclick="runR()">Run R-Code</button>
+                    <input class="btn btn-primary" type="button" value="Add Row" onclick="addRow('dataTable')" />
+                    <button class="btn btn-primary" id="saveCode">Save</button>
+                    <button class="btn btn-primary" id="runCode" onclick="runR()">Run R-Code</button>
                 </div>
 
 
@@ -91,16 +91,19 @@
                 <div ng-show="txtbox" style="height: 85%; width: 100%">
                     <textarea id="noteFName" style="height: 10%; width: 100%; resize: none" placeholder="File Name (w/o type ending)"></textarea>
                     <textarea id="txtview" style="height: 80%; width: 100%; resize: none" placeholder="Your notes here"></textarea>
-                    <button class="btn btn-default" id="saveTXT">Save this Note</button>
+                    <button class="btn btn-primary" id="saveTXT">Save this Note</button>
                 </div>
 
                 <div ng-show="optionsview" style="width: 100%; height:85%;">
                     <form id="file-upload-form">
                         <p> Add a File (.txt or .r) to your Project</p>
                         <input name="textDatei" id="file-input" name="file-upload" type="file">
-                        <button type="button" class="btn btn-default" id="uploadButton">Upload</button>
+                        <br>
+                        <button type="button" class="btn btn-primary" id="uploadButton">Upload</button>
+                        <br>
+                        <br>
                         <p> Download The Whole Project</p>
-                        <button type="button" class="btn btn-default" ng-click="download(vm.project.uniqueKey)">Download</button>
+                        <button type="button" class="btn btn-primary" ng-click="download(vm.project.uniqueKey)">Download</button>
                     </form>
                 </div>
 
@@ -108,9 +111,17 @@
 
             </div>
             <div id="mirror" style="height: 100%" class="col-md-8">
-                <button ng-click="mapshow = false" id="txt">Leaflet map</button>
-                <button ng-click="mapshow= true" id="options">Result</button>
-                <leaflet ng-hide="mapshow" lf-draw="vm.drawOptions" lf-center="vm.center" marker="vm.markers" layers="vm.layers" height="100%" width="100%"></leaflet>
+                <nav class="navbar navbar-custom navbar-static-top">
+                    <div class="container">
+                        <div id="navbarshortmap" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active" ng-click="mapshow = false; buttonshowthemapToggle();" id="showthemap"><a href="#">Leaflet</a></li>
+                                <li ng-click="mapshow = true; buttonshowtheresultToggle();" id="showtheresult"><a href="#">Result</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </nav>
+                <leaflet ng-hide="mapshow" lf-draw="vm.drawOptions" lf-center="vm.center" marker="vm.markers" layers="vm.layers" height="80%" width="100%"></leaflet>
                 <div ng-show="mapshow" id="resultmap">
 
                 </div>
