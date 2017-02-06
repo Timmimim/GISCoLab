@@ -308,7 +308,7 @@ module.exports.runExistingRCode = function(req, res){
 module.exports.runRCode = function (req, res)
 {
 
-	console.log(rey.body);
+	console.log(req.body);
 	var projDirName = req.payload._id;
 
 	var fName = req.body.fName;
