@@ -4,8 +4,8 @@
         .module('giscolab')
         .controller('aboutCtrl', aboutCtrl);
 
-    aboutCtrl.$inject = ['$location', 'meanData', 'userService', '$scope'];
-    function aboutCtrl($location, meanData, userService, $scope) {
+    aboutCtrl.$inject = ['$location', 'meanData', 'userService', '$scope', 'projectService'];
+    function aboutCtrl($location, meanData, userService, $scope, projectService) {
         console.log("about Controller is running!!!");
 
         var vm = this;

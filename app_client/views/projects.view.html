@@ -29,13 +29,13 @@
         <p class="bg-default"> Own Projects:</p>
         <table class="table">
             <tr ng-repeat="ownProject in vm.user.ownProjects | filter:searchProjects">
-                <td><a href="#" ng-click="myFunction(ownProject.projectID)">{{ownProject.projectName}}</a></td>
+                <td ng-click="myFunction(ownProject.projectID)"><a href="#">{{ownProject.projectName}}</a></td>
             </tr>
         </table>
         <p class="bg-default"> Collaborative Projects:</p>
         <table class="table">
             <tr ng-repeat="coopProject in vm.user.coopProjects | filter:searchProjects">
-                <td><a href="#" ng-click="myFunction(coopProject.projectID)">{{coopProject.projectName}}</a></td>
+                <td ng-click="myFunction(coopProject.projectID)" href="#"><a>{{coopProject.projectName}}</a></td>
             </tr>
         </table>
     </div>
@@ -47,7 +47,7 @@
             <div class="col-xs-2"> <!-- Dropdown zu deinen Projekten -->
                 <div class="btn-group">
                     <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Own projects<span class="caret"></span></button>
-                    <table class="dropdown-costum dropdown-menu">
+                    <table class="table dropdown-costum dropdown-menu">
                         <tr>
                         <td><a href="/projectCreate">New project</a></td>
                         </tr>
@@ -55,7 +55,7 @@
                         <td><a href="/projectActive">active project</a></td>
                         </tr>
                         <tr ng-repeat="ownProject in vm.user.ownProjects">
-                            <td><a href="#" ng-click="myFunction(ownProject.projectID)">{{ownProject.projectName}}</a></td>
+                            <td ng-click="myFunction(ownProject.projectID)"><a href="#">{{ownProject.projectName}}</a></td>
                         </tr>
                     </table>
                 </div>
@@ -63,9 +63,9 @@
             <div class="col-xs-2">
                 <div class="btn-group">
                     <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Collaborative Projects<span class="caret"></span></button>
-                    <table class="dropdown-costum dropdown-menu">
+                    <table class="table dropdown-costum dropdown-menu">
                         <tr ng-repeat="coopProject in vm.user.coopProjects">
-                            <td><a href="#" ng-click="myFunction(coopProject.projectID)">{{coopProject.projectName}}</a></td>
+                            <td ng-click="myFunction(coopProject.projectID)"><a href="#">{{coopProject.projectName}}</a></td>
                         </tr>
                     </table>
                 </div>

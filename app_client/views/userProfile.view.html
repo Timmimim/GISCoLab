@@ -15,7 +15,6 @@
                     <div class="input-group">
                         <input ng-model="searchProjects" id="search" type="search" class="form-control" name="search" value="" placeholder="Search">
                     </div>
-
                     <a id="logout" onclick="logout()" class="btn btn-danger" href="/home">Logout</a>
                 </form>
 
@@ -29,13 +28,13 @@
         <p class="bg-default"> Own Projects:</p>
         <table class="table">
             <tr ng-repeat="ownProject in vm.user.ownProjects | filter:searchProjects">
-                <td><a href="#" ng-click="myFunction(ownProject.projectID)">{{ownProject.projectName}}</a></td>
+                <td ng-click="myFunction(ownProject.projectID)"><a href="#">{{ownProject.projectName}}</a></td>
             </tr>
         </table>
         <p class="bg-default"> Collaborative Projects:</p>
         <table class="table">
             <tr ng-repeat="coopProject in vm.user.coopProjects | filter:searchProjects">
-                <td><a href="#" ng-click="myFunction(coopProject.projectID)">{{coopProject.projectName}}</a></td>
+                <td ng-click="myFunction(coopProject.projectID)"><a href="#">{{coopProject.projectName}}</a></td>
             </tr>
         </table>
     </div>

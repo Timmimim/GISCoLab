@@ -4,8 +4,8 @@
     .module('giscolab')
     .controller('profileCtrl', profileCtrl);
 
-  profileCtrl.$inject = ['$location', 'meanData', 'userService', '$scope'];
-  function profileCtrl($location, meanData, userService, $scope) {
+  profileCtrl.$inject = ['$location', 'meanData', 'userService', '$scope','projectService'];
+  function profileCtrl($location, meanData, userService, $scope, projectService) {
     var vm = this;
 
     vm.user = {};
