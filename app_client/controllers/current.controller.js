@@ -160,74 +160,56 @@
             data: $rootScope.newjson
         });
 
-        treeData = function(){
+        treeData = function() {
             var id = tree.getSelectedId();
             var item = tree.getItem(id);
             var path = item.path;
             var itemname = item.name;
-            var ending = item.extension;
-            if(ending == ".txt"){
+            var ending = item.extension
+            if (ending == ".txt") {
                 var txtstring = "/txtFiles/";
             }
-            else
-                if(ending == '.r'){
+            else if (ending == '.r') {
                 var txtstring = "/rScripts/";
-            }
-            else
-            if(ending == '.png'){
+            }else if(ending == '.html'){
                 var txtstring = "/Layers/";
             }
-
             console.log(txtstring);
             console.log(id);
             console.log(item);
             console.log(path);
             console.log(ending);
-            if(ending !== undefined){
-                $.ajax({
-                    type: "GET",
-                    url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + itemname,
-                    success: function (data) {
-                        if(ending == '.r'){
-                            $('#codearea').html(data);
-                            console.log(data);
-                            itemname = itemname.replace(".R", "");
-                            $('#fileName').html(itemname);
-                        }else
-                        if(ending == '.txt'){
-                            $('#txtview').html(data);
-                            console.log(data);
-                            itemname = itemname.replace(".txt", "");
-                            $('#noteFName').html(itemname);
-                        }
-                        else
-                        if(ending == '.png'){
-                            // vm.layers.overlays.push({name : {name : itemname , data : data , type: "image/png"}})
-                            vm.layers.overlays[itemname] =  {name: itemname, type:'xyz', url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + itemname, layerParams: {
-                                format: 'image/png',
-                                transparent: true
-                            }};
-                            console.log(vm.layers);
-                        }
-                            if(ending == '.txt'){
+            if (ending !== undefined) {
+                if (ending !== ".html") {
+                    $.ajax({
+                        type: "GET",
+                        url: "api/loadTreedata2/" + $rootScope.uniKey + txtstring + itemname,
+                        success: function (data) {
+                            if (ending == '.r') {
+                                $('#codearea').html(data);
+                                console.log(data);
+                                itemname = itemname.replace(".R", "");
+                                $('#fileName').html(itemname);
+                            } else if (ending == '.txt') {
                                 $('#txtview').html(data);
                                 console.log(data);
                                 itemname = itemname.replace(".txt", "");
                                 $('#noteFName').html(itemname);
                             }
-                            else
-                                if(ending == '.png'){
-                                // vm.layers.overlays.push({name : {name : itemname , data : data , type: "image/png"}})
-                                vm.layers.overlays[itemname] =  {name: itemname, type:'xyz', url: "api/loadTreedata2/" + $rootScope.uniKey +  txtstring + itemname, layerParams: {
-                                    format: 'image/png',
-                                    transparent: true
-                                }};
-                                console.log(vm.layers);
-                            }
-                    }
-                })
+                        }
+                    })
+                }
+                else if (ending == '.html') {
+                    $.ajax({
+                        type: "GET",
+                        url: "api/loadTreedata3/" + $rootScope.uniKey + txtstring + itemname,
+                        success: function (data) {
+                            vm.layers.overlays.push(data);
+                        }
+                    });
+                }
             }
-        };
+        }
         function appendElement(xMin, xMax, yMin, yMax) {
             angular.element('#codearea').append(
                 '<textarea id="xMin" ng-hide="true">'+xMin+'</textarea>' +

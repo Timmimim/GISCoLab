@@ -36,6 +36,7 @@ router.post('/saveNote/:key', ctrlProject.saveNote);
 router.post('/runRCode/:key', auth, ctrlProject.runRCode);
 router.get('/loadTreedata/:key', ctrlProject.loadTreedata);
 router.get('/loadTreedata2/:key/:string/:filename', ctrlProject.loadTreedata2);
+router.get('/loadTreedata3/:key/:string/:filename', ctrlProject.loadTreedata3)
 
 // authentication
 router.post('/register', ctrlAuth.register);

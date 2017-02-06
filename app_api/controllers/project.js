@@ -403,3 +403,16 @@ module.exports.loadTreedata2 = function(req, res)
         res.status(200).send(data);
     });
 }
+
+module.exports.loadTreedata3 = function(req, res)
+{
+    console.log(req.params.key);
+    console.log(req.params.string);
+    console.log(req.params.filename);
+    fs.readFile('projectData/' + "/" + req.params.key + "/" + req.params.string + "/" + req.params.filename, function (err, data) {
+        if (err) throw err;
+        console.log("filepush");
+        console.log(data);
+        res.status(200).send(data);
+    });
+}

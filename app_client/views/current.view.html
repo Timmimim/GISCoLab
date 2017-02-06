@@ -108,7 +108,12 @@
 
             </div>
             <div id="mirror" style="height: 100%" class="col-md-8">
-                <leaflet lf-draw="vm.drawOptions" lf-center="vm.center" marker="vm.markers" layers="vm.layers" height="100%" width="100%"></leaflet>
+                <button ng-click="mapshow = false" id="txt">Leaflet map</button>
+                <button ng-click="mapshow= true" id="options">Result</button>
+                <leaflet ng-hide="mapshow" lf-draw="vm.drawOptions" lf-center="vm.center" marker="vm.markers" layers="vm.layers" height="100%" width="100%"></leaflet>
+                <div ng-show="mapshow" id="resultmap">
+
+                </div>
             </div>
         </div>
 </div>
