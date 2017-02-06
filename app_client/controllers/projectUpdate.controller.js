@@ -26,7 +26,6 @@
         function saveProject() {
             vm.project.dateEdited = Date.now();
             var colArray = vm.project.collaborators;
-
             colArray = colArray.replace(/^[, ]+|[, ]+$|[, ]+/g, " ").trim().split(' ');
             vm.project.collaborators = colArray;
 
