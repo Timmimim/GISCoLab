@@ -8,6 +8,7 @@
   function registerCtrl($location, authentication) {
     var vm = this;
 
+    // Register the new user
     vm.credentials = {
         firstName: "",
         lastName: "",
@@ -19,17 +20,7 @@
         info: "",
         registrDate: ""
     };
-      
-      /* once Front End Input is acquainted, include this: 
-      userName : "",
-      email : "",
-      firstName : "",
-      lastName : "",
-      registrDate : "",
-      birthday : "",
-      info : "",
-      password : ""
-      */
+
 
     vm.onSubmit = function () {
         if (vm.credentials.password !== vm.credentials.password2) {

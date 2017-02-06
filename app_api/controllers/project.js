@@ -10,6 +10,7 @@ var dirTree = require("directory-tree");
 
 //var _ = require( 'lodash' );
 
+// Create a new Project
 module.exports.createProject = function(req, res){
     var project = new Project();
 
@@ -91,6 +92,8 @@ module.exports.createProject = function(req, res){
             }
         });
     }
+
+    // Create the folders for the project data
     var exec = require('child_process').exec;
     function puts(error, stdout, stderr) { if(error){ console.log(error)}else{console.log(stdout)} };
 	var projDirName = req.body.uniqueKey;
@@ -106,6 +109,7 @@ module.exports.createProject = function(req, res){
     }, 40);
 };
 
+// Load the project
 module.exports.projectRead = function(req, res) {
 
     Project
@@ -119,6 +123,7 @@ module.exports.projectRead = function(req, res) {
 };
 
 
+// Update the project
 module.exports.projectUpdate = function(req, res) {
 
     //var query = {'ownerID': req.payload._id};
@@ -134,6 +139,7 @@ module.exports.projectUpdate = function(req, res) {
 };
 
 
+// Delete the project
 module.exports.projectDelete = function (req, res) {
 
     //var query = {'ownerID': req.payload._id};
@@ -173,6 +179,7 @@ module.exports.projectDelete = function (req, res) {
         }});
 };
 
+// Upload a file
 module.exports.uploadFile = function(req, res) {
 
     var form = new formidable.IncomingForm();
@@ -216,6 +223,7 @@ module.exports.uploadFile = function(req, res) {
     form.parse(req);
 };
 
+// Download a project as zip
 module.exports.downloadZip = function(req, res){
 
 	var exec = require('child_process').exec;
@@ -253,7 +261,7 @@ module.exports.downloadZip = function(req, res){
     */
 };
 
-
+// Save the R code
 module.exports.saveRCode = function (req, res)
 {
 	var projDirName = req.params.key.replace(/(\s)/g, "__");
@@ -273,6 +281,7 @@ module.exports.saveRCode = function (req, res)
 	res.status(200).send("R File successfully saved!");
 };
 
+// Save the txt data
 module.exports.saveNote = function (req, res)
 {
 	var projDirName = req.params.key.replace(/(\s)/g, "__");
@@ -292,6 +301,7 @@ module.exports.saveNote = function (req, res)
 	res.status(200).send("Note successfully saved!");
 };
 
+// Run the R code
 module.exports.runExistingRCode = function(req, res){
 	var projDirName = req.params.key.replace(/(\s)/g, "__");
 	var pathToScript = path.join(__dirname, "../../projectData/" + projDirName + "/rScripts/getCSVwithSciDBData.R");
@@ -380,6 +390,7 @@ module.exports.runRCode = function (req, res)
 	res.status(200).send("R File successfully saved!");
 };
 
+// Load data for the tree
 module.exports.loadTreedata = function(req, res)
 {
     console.log("lalala");
@@ -392,6 +403,7 @@ module.exports.loadTreedata = function(req, res)
     }, 50);
 
 };
+// Load data from the tree
 module.exports.loadTreedata2 = function(req, res)
 {
     console.log(req.params.key);
@@ -405,6 +417,7 @@ module.exports.loadTreedata2 = function(req, res)
     });
 }
 
+// Load layers from the tree
 module.exports.loadTreedata3 = function(req, res)
 {
     console.log(req.params.key);

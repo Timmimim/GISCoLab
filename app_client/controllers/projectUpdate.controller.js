@@ -23,6 +23,7 @@
                 console.log(e);
             });
 
+        // Save the new data
         function saveProject() {
             vm.project.dateEdited = Date.now();
             var colArray = vm.project.collaborators;
@@ -38,6 +39,7 @@
                     });
         }
 
+        // Delete the project
         function deleteProject() {
             projectService.deleteProject(vm.project, pid)
                 .then(function(){

@@ -12,6 +12,7 @@
 
         var pid = projectService.getID();
 
+        // You must have picked a project
         if(pid !== undefined) {
             meanData.getProject(pid)
                 .success(function (data) {
@@ -27,6 +28,7 @@
         alert("kein Projekt ausgewählt. Bitte erst eins auswählen!");
         };
 
+        // Setting the vars for the tree
         var loadnewjson = function () {
             $.ajax({
                 url: "api/loadTreedata/" + $rootScope.uniKey,
@@ -138,18 +140,13 @@
             });
         });
 
+
+        // Download the Project as zip
         $scope.download = function(key){
             window.open('/api/download/'+key);
         };
 
         // Treeview
-
-        setTimeout(function () {
-            console.log($rootScope.uniKey);
-            console.log($rootScope.newjson);
-        }, 500);
-
-
         var tree = new webix.ui({
             container:"treebox",
             id: "myTree",
@@ -160,6 +157,7 @@
             data: $rootScope.newjson
         });
 
+        // Load the selected data in the right areas
         treeData = function() {
             var id = tree.getSelectedId();
             var item = tree.getItem(id);
@@ -174,11 +172,6 @@
             }else if(ending == '.html'){
                 var txtstring = "/Layers/";
             }
-            console.log(txtstring);
-            console.log(id);
-            console.log(item);
-            console.log(path);
-            console.log(ending);
             if (ending !== undefined) {
                 if (ending !== ".html") {
                     $.ajax({
@@ -187,29 +180,30 @@
                         success: function (data) {
                             if (ending == '.r') {
                                 $('#codearea').html(data);
-                                console.log(data);
                                 itemname = itemname.replace(".R", "");
                                 $('#fileName').html(itemname);
                             } else if (ending == '.txt') {
                                 $('#txtview').html(data);
-                                console.log(data);
                                 itemname = itemname.replace(".txt", "");
                                 $('#noteFName').html(itemname);
                             }
                         }
                     })
                 }
-                else if (ending == '.html') {
-                    $.ajax({
-                        type: "GET",
-                        url: "api/loadTreedata3/" + $rootScope.uniKey + txtstring + itemname,
-                        success: function (data) {
-                            vm.layers.overlays.push(data);
-                        }
-                    });
-                }
+                else
+                    if (ending == '.html') {
+                        $.ajax({
+                            type: "GET",
+                            url: "api/loadTreedata3/" + $rootScope.uniKey + txtstring + itemname,
+                            success: function (data) {
+                                vm.layers.overlays.push(data);
+                            }
+                        });
+                    }
             }
         }
+
+
         function appendElement(xMin, xMax, yMin, yMax) {
             angular.element('#codearea').append(
                 '<textarea id="xMin" ng-hide="true">'+xMin+'</textarea>' +
@@ -219,10 +213,7 @@
             );
         }
 
-        /*
-         xyz,geoJSON,geoJSONShape,geoJSONAwesomeMarker,geoJSONVectorMarker,cartodbTiles,cartodbUTFGrid,cartodbInteractive,wms,wmts,group,featureGroup,markercluster,imageOverlay,iip,custom,cartodb,ags,agsBase,agsClustered,agsDynamic,agsFeature,agsHeatmap,agsImage,agsTiled,bing,china,google,heat,here,mapbox,mapboxGL,utfGrid,webGLHeatmap,wfs,yandex
-         */
-
+        // Functions for setting the active class in the navbars
         $scope.buttonCodeToggle = function(){
             angular.element( document.querySelector('#code')).addClass('active');
             angular.element( document.querySelector('#otherdata')).removeClass('active');

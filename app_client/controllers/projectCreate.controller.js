@@ -8,6 +8,7 @@
     function projectsCreateCtrl($location, authentication, $scope) {
         var vm = this;
 
+        // Create the new project
         vm.project = {
             projectName: "",
             ownerID: "",

@@ -21,6 +21,7 @@ $(document).ready( function() {
 
 $('#uploadButton').on('click', function () {
     uploadFile();
+    alert("Please reload the project to get the data in the treestructure!");
 });
 
 function uploadFile() {

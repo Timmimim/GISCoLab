@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Project = mongoose.model('Project');
 
+// Load user data
 module.exports.profileRead = function(req, res) {
 
   if (!req.payload._id) {
@@ -19,8 +20,9 @@ module.exports.profileRead = function(req, res) {
       });
   }
 
-};
+}
 
+// Load user data
 module.exports.profileRead2 = function(req, res){
 
     User
@@ -33,7 +35,7 @@ module.exports.profileRead2 = function(req, res){
         });
 }
 
-
+// Update the profile
 module.exports.profileUpdate = function(req, res) {
     if (!req.payload._id) {
         res.status(401).json({
@@ -47,6 +49,7 @@ module.exports.profileUpdate = function(req, res) {
     }
 };
 
+// Delete the profile
 module.exports.profileDelete = function (req, res) {
     if (!req.payload._id) {
         res.status(401).json({

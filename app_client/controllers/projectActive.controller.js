@@ -23,6 +23,7 @@
                 console.log(e);
             });
 
+        // Load the selected data in the right areas
         var loadnewjson = function () {
             $.ajax({
                 url: "api/loadTreedata/" + $rootScope.uniKey,

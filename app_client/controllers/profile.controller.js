@@ -26,6 +26,7 @@
           $location.path('/projectActive');
       }
 
+      // Save the new user data
       function saveUser() {
           if (vm.user.password !== vm.user.password2) {
               alert("Paswörter stimmen nicht überein!");
@@ -40,6 +41,7 @@
           }
       }
 
+      // Delete the user
       function deleteUser() {
           userService.deleteUsers(vm.user)
               .then(function(){
