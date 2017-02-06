@@ -185,10 +185,14 @@
                         if(ending == '.r'){
                             $('#codearea').html(data);
                             console.log(data);
+                            itemname = itemname.replace(".R", "");
+                            $('#fileName').html(itemname);
                         }else
                             if(ending == '.txt'){
                                 $('#txtview').html(data);
                                 console.log(data);
+                                itemname = itemname.replace(".txt", "");
+                                $('#noteFName').html(itemname);
                             }
                             else
                                 if(ending == '.png'){
