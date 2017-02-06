@@ -358,8 +358,9 @@ module.exports.runRCode = function (req, res)
 		code
 		+ "\n \n" +
 		"library(gdalUtils) \n"+
-		"firstimage = slice(x = scidbst(\""+data.spectrData+"\"), \"t\", 0) # extrahiere erstes Bild \n" +
-		"as_PNG_layer(firstimage,TMS = TRUE, " +
+		"firstimage = slice(x = scidbst(\""+data.spectrData+
+			"\"), \"t\", 0) # extrahiere erstes Bild \n" +
+			"as_PNG_layer(firstimage,TMS = TRUE, " +
 					"bands = "+data.band+
 					", layername=\"" +data.layerName+
 					"\", min="+data.min+", max="+data.max+
