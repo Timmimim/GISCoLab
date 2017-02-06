@@ -3,6 +3,8 @@
  */
 $('#saveCode').on('click', function () {
 	saveR();
+
+    alert("Please reload the project to get the data in the treestructure!");
 });
 
 function saveR()
@@ -37,6 +39,7 @@ function saveR()
 
 $('#saveTXT').on('click', function () {
 	saveTxt();
+    alert("Please reload the project to get the data in the treestructure!");
 });
 
 function saveTxt()
