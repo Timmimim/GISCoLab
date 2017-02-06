@@ -307,20 +307,40 @@ module.exports.runExistingRCode = function(req, res){
 
 module.exports.runRCode = function (req, res)
 {
+
+	console.log(rey.body);
 	var projDirName = req.payload._id;
+
 	var fName = req.body.fName;
 	var pkg = req.body.pkg;
 	var code = req.body.code;
+	var bbox = req.body.bbox;
+	var data = req.body.data;
+
+	if (bbox === null) {
+		bbox = {
+			xMin: '',
+			xMax: '',
+			yMin: '',
+			yMax: ''
+		}
+	}
 
 	var exec = require('child_process').exec;
-	exec("mkdir userTemps/" + projDirName +"");
+	function puts(error, stdout, stderr) { if(error){ console.log(error)}else{console.log(stdout)} };
+
+	// exec("mkdir userTemps/" + projDirName +"", puts);
 
 	var date = Date.now();
 
 	var fileName = path.join(__dirname, '../../userTemps/'
 			+ projDirName +'/temp_' + date +'') + '.R';
 
-	var fillR = pkg+ "\n SCIDB_HOST = \"128.176.148.9\" \n " +
+	console.log(fileName);
+
+	var fillR = "" +
+		pkg +
+		"\n SCIDB_HOST = \"128.176.148.9\" \n " +
 		"SCIDB_PORT = \"30021\" \n " +
 		"SCIDB_USER = \"giscolab\" \n " +
 		"SCIDB_PW   =  \"BxLQmZVL2qqzUhU93usYYdxT\" \n" +
@@ -329,22 +349,34 @@ module.exports.runRCode = function (req, res)
 		"Sys.setenv(https_proxy=\"\") \n" +
 		"Sys.setenv(HTTP_PROXY=\"\") \n" +
 		"Sys.setenv(HTTPS_PROXY=\"\") \n" +
-		code + "\n" +
-		"firstimage = slice(x = scidbst(\"SENTINEL2_MS\"), \"t\", 0) # extrahiere erstes Bild \n" +
-		"as_PNG_layer(firstimage,TMS = TRUE, bands = 4, layername=\"S2_NIR_T0\", min=300, max=5000, rm.scidb = TRUE)";
+		"library(scidbst)" +
+		"bbox = extent("
+			+bbox.xMin+","
+			+bbox.xMax+","
+			+bbox.yMin+","+
+			bbox.yMax+") \n" +
+		code
+		+ "\n \n" +
+		"library(gdalUtils) \n"+
+		"firstimage = slice(x = scidbst(\""+data.spectrData+"\"), \"t\", 0) # extrahiere erstes Bild \n" +
+		"as_PNG_layer(firstimage,TMS = TRUE, " +
+					"bands = "+data.band+
+					", layername=\"" +data.layerName+
+					"\", min="+data.min+", max="+data.max+
+					", rm.scidb = TRUE)"
+		;
 
-	setTimeout( function () {
-		fs.writeFile(fileName, fillR, function(err) {
-			if (err) {
-				console.log("Something went wrong when saving the RScript file: " + err);
-				res.send('Something went wrong when saving the RScript file!');
-			}
-		});
+	console.log("fillR");
+	console.log(fillR);
 
-		setTimeout( function () {
-			res.status(200).send("R File successfully saved!");
-		}, 50);
-	}, 50);
+	fs.writeFile(fileName, fillR, function(err) {
+		if (err) {
+			console.log("Something went wrong when saving the RScript file: " + err);
+			res.send('Something went wrong when saving the RScript file!');
+		}
+	});
+
+	res.status(200).send("R File successfully saved!");
 };
 
 module.exports.loadTreedata = function(req, res)

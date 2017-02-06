@@ -63,17 +63,19 @@
                     <table id="dataTable" class="table table-bordered" width="100%" border="1">
                         <thead>
                             <th style="height: 12px; width: 30%">Output of your code</th>
+                            <th style="height: 12px; width: 30%">Dataset basis</th>
                             <th style="height: 12px; width: 10%">Spectr. Band</th>
                             <th style="height: 12px; width: 30%">New layer name</th>
                             <th style="height: 12px; width: 10%">Min</th>
                             <th style="height: 12px; width: 10%">Max</th>
                         </thead>
                         <tr>
-                            <td><input type="text" name="outputName" placeholder="As specified in your code"/></td>
-                            <td><input type="text" name="bands"  placeholder="Spectr. band num."></td>
-                            <td><input type="text" name="layername" placeholder="Name of your new Layer"></td>
-                            <td><input type="text" name="min" placeholder="Min"></td>
-                            <td><input type="text" name="max"  placeholder="Max"></td>
+                            <td><textarea style="resize: none; height: 24px; " placeholder="As specified in your code"></textarea></td>
+                            <td><textarea style="resize: none; height: 24px; " placeholder="Look up dataset below"></textarea></td>
+                            <td><textarea style="resize: none; height: 24px; width: 50px" placeholder="One band per row"></textarea></td>
+                            <td><textarea style="resize: none; height: 24px; " placeholder="Name of your new Layer"></textarea></td>
+                            <td><textarea style="resize: none; height: 24px; width: 50px" placeholder="Min"></textarea></td>
+                            <td><textarea style="resize: none; height: 24px; width: 50px" placeholder="Max"></textarea></td>
                         </tr>
                     </table>
 
