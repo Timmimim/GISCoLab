@@ -4,8 +4,8 @@
     .module('giscolab')
     .controller('profileCtrl', profileCtrl);
 
-  profileCtrl.$inject = ['$location', 'meanData', 'userService'];
-  function profileCtrl($location, meanData, userService) {
+  profileCtrl.$inject = ['$location', 'meanData', 'userService', '$scope'];
+  function profileCtrl($location, meanData, userService, $scope) {
     var vm = this;
 
     vm.user = {};
@@ -20,6 +20,11 @@
       .error(function (e) {
         console.log(e);
       });
+
+      $scope.myFunction = function (id) {
+          projectService.setID(id);
+          $location.path('/projectActive');
+      }
 
       function saveUser() {
           if (vm.user.password !== vm.user.password2) {
