@@ -1,29 +1,31 @@
 <div class="container">
-
-  <div class="row" style="margin-top: 40px">
-    <div class="col-xs-0,5"></div>
-    <div class="col-xs-7">      <!-- GISCoLab Schriftzug -->
-      <object>
-        <img src="../styles/images/GISCoLab_Logo_black.svg" width="547" height="373" alt="GISCoLab_Logo_black">
-      </object>
+  <nav class="navbar navbar-static-top" style="background: rgb(255, 255, 255); background: rgba(255, 255, 255, 0)"> <!-- Navbar -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background: rgb(255, 255, 255); background: rgba(255, 255, 255, 0)">
     </div>
-    <div class="col-xs-4">
-      <div class="container" style="width: 100%">         <!-- Registrieren -->
-        <div class="jumbotron" style="background: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.7); padding: 10px">
-          <form ng-submit="vm.onSubmit()">
-          <h2 class="form-signin-heading"><b>Register!</b></h2>
-          <input style="margin-top: 1rem" id="firstName" type="text" class="form-control" name="firstName" value="" placeholder="firstName" ng-model="vm.credentials.firstName">
-          <input style="margin-top: 1rem" id="lastName" type="text" class="form-control" name="lastName" value="" placeholder="lastName" ng-model="vm.credentials.lastName">
-          <input style="margin-top: 1rem" id="email" type="email" class="form-control" name="email" value="" placeholder="email" ng-model="vm.credentials.email">
-          <input style="margin-top: 1rem" id="username" type="text" class="form-control" name="userName" value="" placeholder="UserName" ng-model="vm.credentials.userName">
-          <input style="margin-top: 1rem" id="password" type="password" class="form-control" name="password" value="" placeholder="password" ng-model="vm.credentials.password">
-          <input style="margin-top: 1rem" id="passwordrep" type="password" class="form-control" name="passwordrep" value="" placeholder="password repeat" ng-model="vm.credentials.password2">
-            <button type="submit" class="btn btn-primary" style="width: 60%; margin-top: 1rem">Register!</button>
-          </form>
-        </div>
-      </div>
-    </div>      <!-- Registrierung ende -->
-    <div class="col-xs-2"></div>
-  </div>
-
+  </nav> <!-- Navbar ende -->
 </div>
+
+
+<div class="col-xs-1"></div>
+<div class="col-xs-6">      <!-- GISCoLab Schriftzug -->
+  <object>
+    <img src="../styles/images/GISCoLab_Logo_white.svg" style="width: 90%" alt="GISCoLab_Logo_black">
+  </object>
+</div>
+<div class="col-xs-4">
+  <div class="container" style="width: 100%">         <!-- Registrieren -->
+    <div class="jumbotron" style="background: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.7); padding: 10px">
+      <form ng-submit="vm.onSubmit()">
+      <h2 class="form-signin-heading"><b>Register!</b></h2>
+      <input style="margin-top: 1rem" id="firstName" type="text" class="form-control" name="firstName" value="" placeholder="firstName" ng-model="vm.credentials.firstName">
+      <input style="margin-top: 1rem" id="lastName" type="text" class="form-control" name="lastName" value="" placeholder="lastName" ng-model="vm.credentials.lastName">
+      <input style="margin-top: 1rem" id="email" type="email" class="form-control" name="email" value="" placeholder="email" ng-model="vm.credentials.email">
+      <input style="margin-top: 1rem" id="username" type="text" class="form-control" name="userName" value="" placeholder="UserName" ng-model="vm.credentials.userName">
+      <input style="margin-top: 1rem" id="password" type="password" class="form-control" name="password" value="" placeholder="password" ng-model="vm.credentials.password">
+      <input style="margin-top: 1rem" id="passwordrep" type="password" class="form-control" name="passwordrep" value="" placeholder="password repeat" ng-model="vm.credentials.password2">
+        <button type="submit" class="btn btn-success" style="width: 60%; margin-top: 1rem">Register!</button>
+      </form>
+    </div>
+  </div>
+</div>      <!-- Registrierung ende -->
+<div class="col-xs-1"></div>
