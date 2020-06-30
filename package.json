@@ -12,7 +12,7 @@
     "debug": "~2.1.1",
     "directory-tree": "^1.2.0",
     "express": "~4.11.1",
-    "express-jwt": "^3.0.1",
+    "express-jwt": "^6.0.0",
     "formidable": "^1.1.1",
     "fs": "0.0.2",
     "jade": "~1.9.1",
